@@ -1,2 +1,2 @@
 #!/usr/bin/env node
-require('../node-upload-example.min.js');
+require('../server.js');

@@ -20,7 +20,40 @@
         root.NodeUploadExample = factory();
   }
 }(this, function() {
-    var NodeUploadExample;
+    var express = require('express'),
+        fstream = require('fstream'),
+        fs = require('fs'),
+        busboy = require('connect-busboy'),
+        NodeUploadExample = express.Router();
     
+    NodeUploadExample.use(busboy());
+
+    NodeUploadExample.post('/', function(req, res) {
+        if(typeof req.busboy !== 'undefined') {
+            req.busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
+                file.pipe(fstream.Writer({path: 'example.dat'}));
+                fs.writeFile('example.mime', mimetype);
+                res.json('ok');
+            });
+
+            req.pipe(req.busboy);
+        } else {
+            res.json('req.busboy undefined');
+        }
+    });
+
+    NodeUploadExample.get('/', function(req, res) {
+        if(fs.existsSync('example.dat') && fs.existsSync('example.mime')) {
+            res.sendFile('example.dat', {
+                root: process.cwd(),
+                headers: {
+                    'Content-Type': fs.readFileSync('example.mime')
+                }
+            });
+        } else {
+            res.json('example.dat || example.mime do not exist');
+        }
+    });
+
     return NodeUploadExample;
 }));

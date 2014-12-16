@@ -19,6 +19,11 @@
         "stoptime": "*",
         "uglify-js": "*"
     },
+    "dependencies": {
+        "express": "*",
+        "connect-busboy": "*",
+        "fstream": "*"
+    },
     "scripts": {
         "preinstall": "./preinstall.sh",
         "prepublish": "./prepublish.sh",
