@@ -1,0 +1,30 @@
+{
+    "name"        : "node-upload-example",
+    "description" : "basic upload server example",
+    "homepage"    : "https://github.com/daxxog/node-upload-example",
+    "main"        : "node-upload-example.min.js",
+    "version"     : "0.0.1",
+    "engines": { "node" : ">=0.7.0" },
+    "maintainers": [{
+        "name"  : "David Volm",
+        "email" : "david@volminator.com",
+        "web"   : "http://daxxog.com/"
+    }],
+    "repository": {
+        "type" : "git",
+        "url"  : "https://github.com/daxxog/node-upload-example.git"
+    },
+    "devDependencies": {
+        "bitfactory": "*",
+        "stoptime": "*",
+        "uglify-js": "*"
+    },
+    "scripts": {
+        "preinstall": "./preinstall.sh",
+        "prepublish": "./prepublish.sh",
+        "postpublish": "./postpublish.sh"
+    },
+    "bin": {
+        "node-upload-example" : "./bin/node-upload-example"
+    }
+}
